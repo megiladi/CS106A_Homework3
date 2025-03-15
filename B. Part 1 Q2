@@ -1,0 +1,77 @@
+# Attempt 1
+
+def special_str(s):
+    
+    # if start w/ digit
+    if s[0].is_digit():
+        return TRUE
+    
+    # if @ at index 1
+    elif s[1] == '@':
+        return TRUE
+        
+    # if index 2 = index 4
+    elif s[2] == s[4]:
+        return TRUE
+
+    # else not
+    else:
+        return FALSE
+
+# Attempt 2 - So much fixing...
+
+def special_str(s):
+    
+    # triage for indexerror prevention
+    if len(s) >= 1:
+    
+        # if start w/ digit
+        if s[0].isdigit():
+            return True
+        
+    # triage for indexerror prevention
+    elif len(s) >= 2:
+    
+        # if @ at index 1
+        if s[1] == '@':
+            return True
+
+    # triage for indexerror prevention
+    elif len(s) >= 5:
+        
+        # if index 2 = index 4
+        if s[2] == s[4]:
+            return True
+
+    # else not
+    else:
+        return False
+
+# Attempt 3 - Changed elifs to ifs
+
+def special_str(s):
+    
+    # triage for indexerror prevention
+    if len(s) >= 1:
+    
+        # if start w/ digit
+        if s[0].isdigit():
+            return True
+        
+    # triage for indexerror prevention
+    if len(s) >= 2:
+    
+        # if @ at index 1
+        if s[1] == '@':
+            return True
+
+    # triage for indexerror prevention
+    if len(s) >= 5:
+        
+        # if index 2 = index 4
+        if s[2] == s[4]:
+            return True
+
+    # else not
+    else:
+        return False
