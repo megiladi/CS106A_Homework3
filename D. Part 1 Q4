@@ -1,0 +1,21 @@
+# Attempt 1 (plus the learning +- only works in excel, not python...)
+
+def rev_str(s):
+    
+    reverso = str()
+    
+    for char_rev in range(len(s)):
+        reverso += s[abs(char_rev - len(s))]
+        
+    return reverso
+
+# Attempt 2 - Fixed line 19
+
+def rev_str(s):
+    
+    reverso = str()
+    
+    for char_rev in range(len(s)):
+        reverso += s[len(s)-1-char_rev]
+        
+    return reverso
