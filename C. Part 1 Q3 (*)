@@ -1,0 +1,68 @@
+# Attempt 1
+
+def digit2x(s):
+    
+    for i in range(10):
+        s.replace(i,i*2)
+        
+        return s()
+
+# Attempt 2 - Added a variable to be returned at the end and converted i and i*2 to strings
+
+def digit2x(s):
+    
+    text = s()
+
+    for i in range(10):
+        text.replace(str(i),str(i*2))
+        
+    return text
+
+# Attempt 3 - Tried to flip from double value to doubling the appearance of the value in line 28
+
+def digit2x(s):
+    
+    text = s()
+
+    for i in range(10):
+        text.replace(str(i),str(i)+str(i))
+        
+    return text
+
+# Attempt 4 - added the variable to line 39 for updating value
+
+def digit2x(s):
+    
+    text = s
+
+    for i in range(10):
+        text = text.replace(str(i),str(i)+str(i))
+        
+    return text
+
+# Attempt 4 - getting closer...
+
+def digit2x(s):
+    
+    text = str('')
+
+    for i in range(10):
+        if str(i) in s:
+            text = text + str(i)+str(i)
+        
+    return text
+
+# Attempt 5 - Wow, I'm shocked... I liked my two part for that felt like going through a grid / matrix!
+
+def digit2x(s):
+    
+    text = str()
+
+    for char in range(len(s)):
+        for i in range(10):
+            if str(i) in s[char]:
+                text = text + str(i)+str(i)
+            
+    return text
+        
+        
