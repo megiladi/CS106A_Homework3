@@ -1,0 +1,91 @@
+# Attempt 1 
+
+def all_z(s):
+    
+    # if z at index 1, return index 0
+    if s[1] = 'z':
+        print (s[0])
+    
+    # if z at index 3, return index 2
+    elif s[3] = 'z':
+        print (s[2])
+
+    # elif return ''
+    elif print("")
+
+# Attempt 2 - Made all "=" into "==" and corrected the bottom elif
+
+def all_z(s):
+    
+    # if z at index 1, return index 0
+    if s[1] == 'z':
+        print (s[0])
+    
+    # if z at index 3, return index 2
+    elif s[3] == 'z':
+        print (s[2])
+
+    # elif return ''
+    else:
+        print("")
+
+# Attempt 3 - Replaced prints with returns
+
+def all_z(s):
+    
+    # if z at index 1, return index 0
+    if s[1] == 'z':
+        return (s[0])
+    
+    # if z at index 3, return index 2
+    elif s[3] == 'z':
+        return (s[2])
+
+    # elif return ''
+    else:
+        return ""
+
+# Attempt 4 - Added try / except
+
+def all_z(s):
+    
+    try:
+    
+        # if z at index 1, return index 0
+        if s[1] == 'z':
+            return (s[0])
+        
+        # if z at index 3, return index 2
+        elif s[3] == 'z':
+            return (s[2])
+    
+        # elif return ''
+        else:
+            return ""
+    
+    # be ready for 1 letter words
+    except IndexError:
+        print("String is too short")
+
+# Attempt 5 - Made an upfront if check for length / expected errors to replace the IndexError that the class' experimental IDE doesn't seem to have installed
+
+def all_z(s):
+    
+    # Handle 1-char strings
+    if len(s) <= 1:
+        return ""
+        
+    # Handle short strings
+    elif len(s) <= 3:
+        if s[1] == 'z':
+            return s[0]
+        else:
+            return ""
+    else:
+        # String long enough for all checks
+        if s[1] == 'z':
+            return s[0]
+        elif s[3] == 'z':
+            return s[2]
+        else:
+            return ""
