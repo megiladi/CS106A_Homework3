@@ -1,0 +1,25 @@
+# Attempt 1
+
+def is_move_ok(grid, x_to, y_to):
+    """
+    Given a grid and possibly out-of-bounds x_to, y_to
+    return True if that destination is ok, False otherwise.
+    (tests provided, code TBD)
+    >>> grid = Grid.build([['w', 'w', 'w'], ['r', None, 'w']])
+    >>> is_move_ok(grid, 1, 1)   # down ok
+    True
+    >>> is_move_ok(grid, -1, 1)  # out-of-bounds left
+    False
+    >>> is_move_ok(grid, 0, 1)   # down blocked
+    False
+    >>> is_move_ok(grid, 2, 1)   # down blocked
+    False
+    >>> is_move_ok(grid, 2, 2)   # out-of-bounds down
+    False
+    """
+    if x_to < 0 or x_to >= grid.width or y_to < 0 or y_to >= grid.height:
+        return False
+    elif grid.get(x_to,y_to) is not None:
+        return False
+    else:
+        return True
