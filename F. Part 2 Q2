@@ -1,0 +1,45 @@
+# Attempt 1
+
+def move_water(grid, x_from, y_from):
+    """
+    There is water at the given x_from, y_from.
+    Move the water to one of the 3 squares below,
+    or erase it, as described in the handout.
+    Return the grid when done.
+    (tests provided, code TBD)
+    >>> grid = Grid.build([['w', 'w', 'w'], ['r', None, 'w']])
+    >>> move_water(grid, 1, 0)  # down ok
+    [['w', None, 'w'], ['r', 'w', 'w']]
+    >>> grid = Grid.build([['w', 'w', 'w'], ['r', None, 'w']])
+    >>> move_water(grid, 0, 0)  # down right
+    [[None, 'w', 'w'], ['r', 'w', 'w']]
+    >>> grid = Grid.build([['w', 'w', 'w'], ['r', None, 'w']])
+    >>> move_water(grid, 2, 0)  # down left
+    [['w', 'w', None], ['r', 'w', 'w']]
+    >>> grid = Grid.build([['w', 'w', 'w'], ['r', None, 'w']])
+    >>> move_water(grid, 2, 1)  # nowhere to go - disappears
+    [['w', 'w', 'w'], ['r', None, None]]
+    >>> grid = Grid.build([['r', 'w'], [None, None], [None, None]])
+    >>> move_water(grid, 1, 0)  # Tall - water moves one square
+    [['r', None], [None, 'w'], [None, None]]
+    """
+    for shift_x in [0,-1,1]:
+        if is_move_ok(grid,x_from + shift_x,y_from):
+            grid.set(x_from,y_from,None)
+            grid.set(x_from + shift_x, y_from + 1,'w')
+            return grid
+        else:
+            grid.set(x_from, y_from, None)
+            return grid
+
+# Attempt 2 - Change the else in the if loop in line 43-45
+
+    for shift_x in [0,-1,1]:
+        if is_move_ok(grid,x_from + shift_x,y_from):
+            grid.set(x_from,y_from,None)
+            grid.set(x_from + shift_x, y_from + 1,'w')
+            return grid
+    
+    # remove the else from the if loop since it shouldn't happen each time 
+    grid.set(x_from, y_from, None)
+    return grid
