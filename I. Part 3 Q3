@@ -1,0 +1,43 @@
+# Attempt 1
+
+def do_whole_grid(grid, brownian):
+    """
+    Given grid and brownian int, do one round
+    of gravity and brownian over the whole grid.
+    (tests and code TBD)
+    >>> # text 3x3 grid with sand at the top
+    >>> grid = grid.build([['s','s','s'],[None,None,None],[None,None,None]])
+    >>> do_whole_grid(grid,0)
+    [[None, None, None], ['s', 's', 's'], [None, None, None]]
+    >>> # Test with mixed elements
+    >>> grid = Grid.build([['s', None, 's'], ['r', None, None], [None, 's', None]])
+    >>> do_whole_grid(grid, 0)
+    [[None, None, None], ['r', 's', 's'], [None, 's', None]]
+    """
+    for y in reversed(range(grid.height)):
+        for x in range(grid.width):
+            if grid.get(x, y) == 's':
+                do_gravity(grid, x, y)
+    return grid
+
+# Attempt 2 - Made grid.build upper Grid.build in line 31
+
+def do_whole_grid(grid, brownian):
+    """
+    Given grid and brownian int, do one round
+    of gravity and brownian over the whole grid.
+    (tests and code TBD)
+    >>> # text 3x3 grid with sand at the top
+    >>> grid = Grid.build([['s','s','s'],[None,None,None],[None,None,None]])
+    >>> do_whole_grid(grid,0)
+    [[None, None, None], ['s', 's', 's'], [None, None, None]]
+    >>> # Test with mixed elements
+    >>> grid = Grid.build([['s', None, 's'], ['r', None, None], [None, 's', None]])
+    >>> do_whole_grid(grid, 0)
+    [[None, None, None], ['r', 's', 's'], [None, 's', None]]
+    """
+    for y in reversed(range(grid.height)):
+        for x in range(grid.width):
+            if grid.get(x, y) == 's':
+                do_gravity(grid, x, y)
+    return grid
