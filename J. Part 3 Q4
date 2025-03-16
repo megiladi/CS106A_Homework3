@@ -1,0 +1,73 @@
+# Attempt 1
+
+def do_brownian(grid, x, y, brownian):
+    """
+    Given grid, x,y, and brownian int 0..100.
+    Do the random brownian move for that x,y.
+    Return the grid.
+    (tests provided, code TBD)
+    >>> # Hack: tamper with randrange() to always return 0
+    >>> # So we can write a test.
+    >>> # This only happens for the Doctest run, not in production.
+    >>> random.randrange = lambda n: 0
+    >>> # 1,0 can go left, but 1,1 cannot
+    >>> grid = Grid.build([[None, 's', None], ['s', 's', None]])
+    >>> do_brownian(grid, 1, 0, 100)
+    [['s', None, None], ['s', 's', None]]
+    >>> grid = Grid.build([[None, 's', None], ['s', 's', None]])
+    >>> do_brownian(grid, 1, 1, 100)
+    [[None, 's', None], ['s', 's', None]]
+    """
+
+    # check if sand
+    if grid.get(x,y) == 's':
+
+        # make random number and check if < brownian
+        num = random.randrange(100)
+        if num < brownian:
+
+            # decide left (0) or right (1)
+            coin = random.randrange(2)
+            if coin = 0:
+                is_move_ok(grid,x,y,x - 1,y)
+            else:
+                is_move_ok(grid,x,y,x + 1,y)
+    return grid
+
+# Attempt 2 - Changed = to == on line 48 and added do_move to do something once I have outputs on line 50 and 53
+
+    # check if sand
+    if grid.get(x,y) == 's':
+
+        # make random number and check if < brownian
+        num = random.randrange(100)
+        if num < brownian:
+
+            # decide left (0) or right (1)
+            coin = random.randrange(2)
+            if coin == 0:
+                if is_move_ok(grid,x,y,x - 1,y):
+                    do_move(grid,x,y,x - 1,y)
+            else:
+                is_move_ok(grid,x,y,x + 1,y)
+                do_move(grid, x, y, x + 1, y)
+    return grid
+
+# Attempt 3 - Fix my if statements and add one to line 71
+
+    # check if sand
+    if grid.get(x,y) == 's':
+
+        # make random number and check if < brownian
+        num = random.randrange(100)
+        if num < brownian:
+
+            # decide left (0) or right (1)
+            coin = random.randrange(2)
+            if coin == 0:
+                if is_move_ok(grid,x,y,x - 1,y):
+                    do_move(grid,x,y,x - 1,y)
+            else:
+                if is_move_ok(grid,x,y,x + 1,y):
+                    do_move(grid, x, y, x + 1, y)
+    return grid
