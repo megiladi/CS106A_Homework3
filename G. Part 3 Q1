@@ -1,0 +1,82 @@
+# Attempt 1
+
+def is_move_ok(grid, x_from, y_from, x_to, y_to):
+    """
+    Given grid and x_from,y_from and destination x_to,y_to
+    for one of the five possible moves. Assume x_from,y_from
+    is in bounds and contains sand. Is moving to x_to,y_to ok?
+    Return True if the move is ok, or False otherwise.
+    Ok move: destination is in bounds, empty, not violating corner rule.
+    >>> # Out-of-bounds OOB tests
+    >>> # Make a 1 by 1 grid with an 's' - everything is OOB from here
+    >>> grid = Grid.build([['s']])
+    >>> is_move_ok(grid, 0, 0, -1, 0) # left OOB
+    False
+    >>> is_move_ok(grid, 0, 0, 0, 1)  # down OOB
+    False
+    >>> is_move_ok(grid, 0, 0, -1, 1)  # down-left OOB
+    False
+    >>> # pass - implement 2 more OOB tests here
+    >>> # 3 by 2 grid, try various moves from 1,0
+    >>> grid = Grid.build([[None, 's',  'r'], [None, None, None]])
+    >>> is_move_ok(grid, 1, 0, 0, 0)  # left ok
+    True
+    >>> is_move_ok(grid,1,0,1,1) # down ok
+    >>> is_move_ok(grid,1,0,0,1) # down-left ok
+    >>> is_move_ok(grid,1,0,2,0) # right OOB
+    >>> # pass - implement 4 more tests here
+    """
+    if x_to < 0 or x_to >= grid.width or y_to < 0 or y_to >= grid.height:
+        return False
+    elif grid.get(x_to, y_to) is not None:
+        return False
+    elif ((x_to - 1) == x_from) or ((x_to + 1) == x_from):
+        return False
+    else:
+        return True
+
+# Attempt 2 - update line 44 to actually answer the question, lol...
+
+    if x_to < 0 or x_to >= grid.width or y_to < 0 or y_to >= grid.height:
+        return False
+    elif grid.get(x_to, y_to) is not None:
+        return False
+    elif (((x_from + 1) == x_to) or ((x_from - 1) == x_to)) and (grid.get(x_to,y_to-1) == 'r'):
+        return False
+    else:
+        return True
+
+# Attempt 3 - update line 55 to include the y axis in the conditions
+
+    if x_to < 0 or x_to >= grid.width or y_to < 0 or y_to >= grid.height:
+        return False
+    elif grid.get(x_to, y_to) is not None:
+        return False
+    elif (((x_from + 1) == x_to) or ((x_from - 1) == x_to)) and ((y_from + 1) == y_to) and (grid.get(x_to,y_to-1) == 'r'):
+        return False
+    else:
+        return True
+
+# Attempt 4 - check for not none, not just rock
+
+    if x_to < 0 or x_to >= grid.width or y_to < 0 or y_to >= grid.height:
+        return False
+    elif grid.get(x_to, y_to) is not None:
+        return False
+    elif (((x_from + 1) == x_to) or ((x_from - 1) == x_to)) and ((y_from + 1) == y_to) and (grid.get(x_to,y_to-1) == 'r'):
+        return False
+    else:
+        return True
+
+# Adjustment - Broke out row 77
+
+    if x_to < 0 or x_to >= grid.width or y_to < 0 or y_to >= grid.height:
+        return False
+    elif grid.get(x_to, y_to) is not None:
+        return False
+    elif (((x_from + 1) == x_to) or ((x_from - 1) == x_to)) and \
+            ((y_from + 1) == y_to) and \
+            (grid.get(x_to,y_to-1) is not None):
+        return False
+    else:
+        return True
