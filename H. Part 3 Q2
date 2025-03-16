@@ -1,0 +1,98 @@
+# Attempt 1
+
+def do_gravity(grid, x, y):
+    """
+    Given grid and a in-bounds x, y. If there is a sand at that x, y.
+    Try to make one move, trying them in this order:
+    move down, move down-left, move down-right.
+    Return the grid in all cases.
+    (tests provided, code TBD)
+    >>> # not sand
+    >>> grid = Grid.build([[None, 's', None], [None, None, None]])
+    >>> do_gravity(grid, 0, 0)
+    [[None, 's', None], [None, None, None]]
+    >>>
+    >>> # down
+    >>> grid = Grid.build([[None, 's', None], [None, None, None]])
+    >>> do_gravity(grid, 1, 0)
+    [[None, None, None], [None, 's', None]]
+    >>>
+    >>> # bottom blocked
+    >>> grid = Grid.build([[None, 's', None], ['r', 'r', 'r']])
+    >>> do_gravity(grid, 1, 0)
+    [[None, 's', None], ['r', 'r', 'r']]
+    >>>
+    >>> # rock-below down-left
+    >>> grid = Grid.build([[None, 's', None], [None, 'r', None]])
+    >>> do_gravity(grid, 1, 0)
+    [[None, None, None], ['s', 'r', None]]
+    >>>
+    >>> # sand-below down-right
+    >>> grid = Grid.build([[None, 's', None], ['s', 's', None]])
+    >>> do_gravity(grid, 1, 0)
+    [[None, None, None], ['s', 's', 's']]
+    >>>
+    >>> # sand corner: down-right
+    >>> grid = Grid.build([['s', 's', None], [None, 's', None]])
+    >>> do_gravity(grid, 1, 0)
+    [['s', None, None], [None, 's', 's']]
+    >>>
+    >>> # at bottom already
+    >>> grid = Grid.build([[None, None, None], [None, 's', None]])
+    >>> do_gravity(grid, 1, 1)
+    [[None, None, None], [None, 's', None]]
+    >>>
+    >>> # width 5 with 4 s - each s something different happens
+    >>> grid = Grid.build([['s', 's', None, 's', 's'], ['s', 's', None, 's', None]])
+    >>> do_gravity(grid, 0, 0)
+    [['s', 's', None, 's', 's'], ['s', 's', None, 's', None]]
+    >>> grid = Grid.build([['s', 's', None, 's', 's'], ['s', 's', None, 's', None]])
+    >>> do_gravity(grid, 1, 0)
+    [['s', None, None, 's', 's'], ['s', 's', 's', 's', None]]
+    >>> grid = Grid.build([['s', 's', None, 's', 's'], ['s', 's', None, 's', None]])
+    >>> do_gravity(grid, 3, 0)
+    [['s', 's', None, None, 's'], ['s', 's', 's', 's', None]]
+    >>> grid = Grid.build([['s', 's', None, 's', 's'], ['s', 's', None, 's', None]])
+    >>> do_gravity(grid, 4, 0)
+    [['s', 's', None, 's', None], ['s', 's', None, 's', 's']]
+    """
+
+    # Check if s
+    if grid.get(x,y) == 's':
+
+        # Check down
+        if is_move_ok(grid,x,y,x,y+1):
+            do_move(grid,x,y,x,y+1)
+            return grid
+
+        # Check down-left
+        elif is_move_ok(grid, x, y, x - 1, y + 1):
+            do_move(grid, x, y, x - 1, y + 1)
+            return grid
+
+        # Check down-right
+        elif is_move_ok(grid, x, y, x - 1, y + 1):
+            do_move(grid, x, y, x - 1, y + 1)
+            return grid
+
+# Attempt 2 - Replace is with == on line 81, add a return grid if nothing works at the very bottom
+
+    # Check if s
+    if grid.get(x,y) == 's':
+
+        # Check down
+        if is_move_ok(grid,x,y,x,y+1):
+            do_move(grid,x,y,x,y+1)
+            return grid
+
+        # Check down-left
+        elif is_move_ok(grid, x, y, x - 1, y + 1):
+            do_move(grid, x, y, x - 1, y + 1)
+            return grid
+
+        # Check down-right
+        elif is_move_ok(grid, x, y, x + 1, y + 1):
+            do_move(grid, x, y, x + 1, y + 1)
+            return grid
+
+    return grid
